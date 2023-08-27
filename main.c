@@ -35,10 +35,12 @@ void bubbleSort(int arr[], int size) {
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
 
+                printf("Sorting...\n");
                 printVerticalBars(arr, size);
                 clearTerminal();
 
-                sleep(1);             }
+                sleep(1);             
+            }
         }
     }
 }
@@ -51,7 +53,9 @@ int main() {
     printf("Unsorted array:\n");
     printVerticalBars(arr, size);
 
-    printf("\nSorting...\n");
+    sleep(1);
+    clearTerminal();
+
     bubbleSort(arr, size);
 
     printf("Sorted array:\n");
