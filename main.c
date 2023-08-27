@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>  // For sleep function (on POSIX systems)
+#include <unistd.h>  
 
 void printVerticalBars(int arr[], int size) {
     int max_value = arr[0];
@@ -26,17 +26,14 @@ void bubbleSort(int arr[], int size) {
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < size - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
-                // Swap elements
+
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
 
-                // Print array after each swap
                 printVerticalBars(arr, size);
 
-                // Add a delay for visualization
-                sleep(1); // Sleep for 1 second (POSIX systems)
-            }
+                sleep(1);             }
         }
     }
 }
