@@ -1,37 +1,36 @@
 #include "SortingAlgo.h"
-#include<unistd.h>
-void printVerticalBars(int arr[], int size) {
-    int max_value = arr[0];
-    for (int i = 1; i < size; i++) {
-        if (arr[i] > max_value) {
-            max_value = arr[i];
-        }
+#include <SDL2/SDL.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
+#define NUM_POINTS 50
+
+void drawChart(SDL_Renderer *renderer, SDL_Point points[]) {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    for (int i = 0; i < NUM_POINTS; i++) {
+        SDL_RenderDrawPoint(renderer, points[i].x, points[i].y);
     }
 
-    for (int level = max_value; level > 0; level--) {
-        for (int i = 0; i < size; i++) {
-            if (arr[i] >= level) {
-                printf("| ");
-            } else {
-                printf("  ");
-            }
-        }
-        printf("\n");
-    }
+    SDL_RenderPresent(renderer);
 }
 
-void bubbleSort(int arr[], int size) {
-    for(int i = 0; i < size - 1; i++) {
-        for (int j = 0; j < size - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                int temp = arr[j];
-                arr[j] = arr[j +1];
-                arr[j + 1] = temp;
-            }
+void bubbleSort(SDL_Point points[], SDL_Renderer *renderer) {
+    for (int i = 0; i < NUM_POINTS - 1; i++) {
+        for (int j = 0; j < NUM_POINTS - i - 1; j++) {
+            if (points[j].y > points[j + 1].y) {
+                SDL_Point temp = points[j];
+                points[j] = points[j + 1];
+                points[j + 1] = temp;
 
-            printVerticalBars(arr, size);
-            
-            sleep(1);
+                drawChart(renderer, points);
+                SDL_Delay(50);
+            }
         }
-    }    
+    }
 }
