@@ -21,7 +21,7 @@ void drawBars(SDL_Renderer *renderer, int arr[]) {
     SDL_RenderPresent(renderer);
 }
 
-void bubbleSortVisual(int arr[], SDL_Renderer *renderer) {
+void bubbleSort(int arr[], SDL_Renderer *renderer) {
     for (int i = 0; i < NUM_BARS - 1; i++) {
         for (int j = 0; j < NUM_BARS - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
@@ -51,6 +51,34 @@ void insertionSort(int arr[], SDL_Renderer *renderer) {
     }
 }
 
+int showSortingOptions() {
+    int choice;
+    printf("Select a sorting algorithm:\n");
+    printf("1. Bubble Sort\n");
+    printf("2. Insertion Sort\n");
+    // Add more options for other sorting algorithms here
+
+    printf("Enter the number of your choice: ");
+    scanf("%d", &choice);
+
+    return choice;
+}
+
+void chooseSortingAlgorithm(int arr[], SDL_Renderer *renderer, int algorithm) {
+    switch (algorithm) {
+        case 1:
+            bubbleSort(arr, renderer);
+            break;
+        case 2:
+            insertionSort(arr, renderer);
+            break;
+        // Add more cases for other sorting algorithms as needed
+        default:
+            printf("Invalid algorithm choice.\n");
+    }
+}
+
+
 
 
 int main() {
@@ -72,8 +100,8 @@ int main() {
     for (int i = 0; i < NUM_BARS; i++) {
         arr[i] = rand() % (SCREEN_HEIGHT - 50) + 50;
     }
-
-    insertionSort(arr, renderer);
+    int choice = showSortingOptions();
+    chooseSortingAlgorithm(arr, renderer, choice); 
 
     SDL_Event e;
     int quit = 0;
