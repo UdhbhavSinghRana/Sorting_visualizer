@@ -22,10 +22,11 @@ Sorting Visualizer Demo
 
     Clone this repository to your local machine:
 
-bash
+```bash
 
     git clone https://github.com/your-username/sorting-visualizer.git
 
+```
 Navigate to the project directory:
 
 bash
