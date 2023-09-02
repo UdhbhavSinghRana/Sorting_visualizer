@@ -34,6 +34,8 @@ bash
     
     gcc -o main main.c -I./sort_lib -L./sort_lib -lSDL2 -lSDL2main -lsorting
 
+    ./main
+
 ## Contributing
 
 If you'd like to contribute to this project, please follow these steps:
