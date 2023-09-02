@@ -16,4 +16,7 @@ void quickSort(int arr[], int low, int high, SDL_Renderer *renderer);
 // Merge Sort
 void mergeSort(int arr[], int left, int right, SDL_Renderer *renderer);
 
+// Draw bars
+void drawBars(SDL_Renderer *renderer, int arr[]);
+
 #endif
