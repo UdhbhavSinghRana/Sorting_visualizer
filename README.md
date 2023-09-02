@@ -20,7 +20,7 @@ Sorting Visualizer Demo
 
 ## Usage
 
-    Clone this repository to your local machine:
+Clone this repository to your local machine:
 
 ```bash
 
@@ -29,14 +29,14 @@ Sorting Visualizer Demo
 ```
 Navigate to the project directory:
 
-bash
+```bash
 
     cd sorting-visualizer
     
     gcc -o main main.c -I./sort_lib -L./sort_lib -lSDL2 -lSDL2main -lsorting
 
     ./main
-
+```
 ## Contributing
 
 If you'd like to contribute to this project, please follow these steps:
