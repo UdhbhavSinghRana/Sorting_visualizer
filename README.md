@@ -31,18 +31,8 @@ Navigate to the project directory:
 bash
 
     cd sorting-visualizer
-
-    Open the index.html file in your web browser.
-
-    Choose a sorting algorithm from the dropdown menu.
-
-    Adjust the array size and sorting speed using the provided sliders.
-
-    Click the "Generate Array" button to create a new random array.
-
-    Click the "Sort" button to start the visualization of the chosen sorting algorithm.
-
-    Watch the algorithm in action as it sorts the array.
+    
+    gcc -o main main.c -I./sort_lib -L./sort_lib -lSDL2 -lSDL2main -lsorting
 
 ## Contributing
 
