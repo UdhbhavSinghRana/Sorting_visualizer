@@ -51,11 +51,29 @@ void insertionSort(int arr[], SDL_Renderer *renderer) {
     }
 }
 
+void selectionSort(int arr[], SDL_Renderer *renderer) {
+    for (int i = 0 ; i < NUM_BARS - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < NUM_BARS; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            } 
+        }
+        int temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+
+        drawBars(renderer, arr);
+        SDL_Delay(30);
+    }
+}
+
 int showSortingOptions() {
     int choice;
     printf("Select a sorting algorithm:\n");
     printf("1. Bubble Sort\n");
     printf("2. Insertion Sort\n");
+    printf("3. Selection Sort\n");
     // Add more options for other sorting algorithms here
 
     printf("Enter the number of your choice: ");
@@ -71,6 +89,9 @@ void chooseSortingAlgorithm(int arr[], SDL_Renderer *renderer, int algorithm) {
             break;
         case 2:
             insertionSort(arr, renderer);
+            break;
+        case 3:
+            selectionSort(arr, renderer);
             break;
         // Add more cases for other sorting algorithms as needed
         default:
