@@ -24,18 +24,19 @@ Clone this repository to your local machine:
 
 ```bash
 
-    git clone https://github.com/your-username/sorting-visualizer.git
+git clone https://github.com/your-username/sorting-visualizer.git
 
 ```
 Navigate to the project directory:
 
 ```bash
 
-    cd sorting-visualizer
-    
-    gcc -o main main.c -I./sort_lib -L./sort_lib -lSDL2 -lSDL2main -lsorting
+cd sorting-visualizer
 
-    ./main
+gcc -o main main.c -I./sort_lib -L./sort_lib -lSDL2 -lSDL2main -lsorting
+
+./main
+
 ```
 ## Contributing
 
