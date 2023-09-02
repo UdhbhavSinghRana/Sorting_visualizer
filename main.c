@@ -5,34 +5,53 @@
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
-#define NUM_POINTS 50
+#define NUM_BARS 50
+#define BAR_WIDTH (SCREEN_WIDTH / NUM_BARS)
 
-void drawChart(SDL_Renderer *renderer, SDL_Point points[]) {
+void drawBars(SDL_Renderer *renderer, int arr[]) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    for (int i = 0; i < NUM_POINTS; i++) {
-        SDL_RenderDrawPoint(renderer, points[i].x, points[i].y);
+    for (int i = 0; i < NUM_BARS; i++) {
+        SDL_Rect bar = {i * BAR_WIDTH, SCREEN_HEIGHT - arr[i], BAR_WIDTH, arr[i]};
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_RenderFillRect(renderer, &bar);
     }
 
     SDL_RenderPresent(renderer);
 }
 
-void bubbleSortVisual(SDL_Point points[], SDL_Renderer *renderer) {
-    for (int i = 0; i < NUM_POINTS - 1; i++) {
-        for (int j = 0; j < NUM_POINTS - i - 1; j++) {
-            if (points[j].y > points[j + 1].y) {
-                SDL_Point temp = points[j];
-                points[j] = points[j + 1];
-                points[j + 1] = temp;
+void bubbleSortVisual(int arr[], SDL_Renderer *renderer) {
+    for (int i = 0; i < NUM_BARS - 1; i++) {
+        for (int j = 0; j < NUM_BARS - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
 
-                drawChart(renderer, points);
-                SDL_Delay(50);
+                drawBars(renderer, arr);
+                SDL_Delay(30);
             }
         }
     }
 }
+
+void insertionSort(int arr[], SDL_Renderer *renderer) {
+    for (int i = 1; i < NUM_BARS; i++) {
+        int j = i;
+        while (j > 0 && arr[j] < arr[j - 1]) {
+            int temp = arr[j];
+            arr[j] = arr[j - 1];
+            arr[j - 1] = temp;
+
+            drawBars(renderer, arr);
+            SDL_Delay(30);
+            j--;
+        }
+    }
+}
+
+
 
 int main() {
     SDL_Init(SDL_INIT_VIDEO);
@@ -48,13 +67,13 @@ int main() {
 
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    SDL_Point points[NUM_POINTS];
+    int arr[NUM_BARS];
     srand(time(NULL));
-    for (int i = 0; i < NUM_POINTS; i++) {
-        points[i] = (SDL_Point){i * (SCREEN_WIDTH / NUM_POINTS), SCREEN_HEIGHT - (rand() % (SCREEN_HEIGHT - 50) + 50)};
+    for (int i = 0; i < NUM_BARS; i++) {
+        arr[i] = rand() % (SCREEN_HEIGHT - 50) + 50;
     }
 
-    bubbleSortVisual(points, renderer);
+    insertionSort(arr, renderer);
 
     SDL_Event e;
     int quit = 0;
@@ -72,3 +91,4 @@ int main() {
 
     return 0;
 }
+
