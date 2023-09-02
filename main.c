@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include "SortingAlgo.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -125,6 +126,37 @@ void mergeSort(int arr[], int left, int right, SDL_Renderer *renderer) {
     }
 }
 
+int partition(int arr[], int low, int high, SDL_Renderer *renderer) {
+    int pivot = arr[high];
+    int i = (low - 1);
+
+    for (int j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            drawBars(renderer, arr);
+            SDL_Delay(30);
+        }
+    }
+
+    int temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
+    drawBars(renderer, arr);
+    SDL_Delay(30);
+
+    return (i + 1);
+}
+
+void quickSort(int arr[], int low, int high, SDL_Renderer *renderer) {
+    if (low < high) {
+        int pi = partition(arr, low, high, renderer);
+        quickSort(arr, low, pi - 1, renderer);
+        quickSort(arr, pi + 1, high, renderer);
+    }
+}
 int showSortingOptions() {
     int choice;
     printf("Select a sorting algorithm:\n");
@@ -132,6 +164,7 @@ int showSortingOptions() {
     printf("2. Insertion Sort\n");
     printf("3. Selection Sort\n");
     printf("4. Merge Sort \n");
+    printf("5. Quick Sort \n");
     // Add more options for other sorting algorithms here
 
     printf("Enter the number of your choice: ");
@@ -154,14 +187,13 @@ void chooseSortingAlgorithm(int arr[], SDL_Renderer *renderer, int algorithm) {
         case 4:
             mergeSort(arr, 0, NUM_BARS - 1, renderer);
             break;
+        case 5:
+            quickSort(arr, 0, NUM_BARS - 1, renderer);
         // Add more cases for other sorting algorithms as needed
         default:
             printf("Invalid algorithm choice.\n");
     }
 }
-
-
-
 
 int main() {
     SDL_Init(SDL_INIT_VIDEO);
