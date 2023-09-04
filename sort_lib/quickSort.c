@@ -17,7 +17,7 @@ int partition(int arr[], int low, int high, SDL_Renderer *renderer, int speed, i
             int temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
-            drawBars(renderer, arr);
+            drawBars(renderer, arr, size);
             SDL_Delay(speed);
         }
     }
