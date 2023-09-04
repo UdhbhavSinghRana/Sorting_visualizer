@@ -16,7 +16,7 @@ void insertionSort(int arr[], SDL_Renderer *renderer, int speed, int size) {
             arr[j - 1] = temp;
 
             drawBars(renderer, arr, size);
-            SDL_Delay(speed);
+            SDL_Delay(40);
             j--;
         }
     }

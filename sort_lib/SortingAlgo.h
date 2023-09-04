@@ -10,6 +10,7 @@ void insertionSort(int arr[], SDL_Renderer *renderer, int speed, int size);
 
 //Selection Sort
 void selectionSort(int arr[], SDL_Renderer *renderer, int speed, int size);
+
 // Quick Sort
 void quickSort(int arr[], int low, int high, SDL_Renderer *renderer, int speed, int size);
 
