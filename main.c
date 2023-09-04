@@ -50,7 +50,7 @@ int chooseSpeed() {
     printf("3. Fast\n");
     printf("4. Very Fast\n");
     
-    printf("Enter the ber of your choice: ");
+    printf("Enter the number of your choice: ");
     scanf("%d", &speed);
 
     switch (speed) {
