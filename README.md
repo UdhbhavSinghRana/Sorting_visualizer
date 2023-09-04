@@ -74,10 +74,6 @@ git push origin feature/new-feature
 
 6. Your pull request will be reviewed, and once approved, it will be merged into the main branch.
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
 ## Acknowledgments
 
 Special thanks to Algorithm Visualizer for inspiration and guidance.
