@@ -9,7 +9,7 @@
 #define NUM_BARS 50
 #define BAR_WIDTH (SCREEN_WIDTH / NUM_BARS)
 
-void selectionSort(int arr[], SDL_Renderer *renderer) {
+void selectionSort(int arr[], SDL_Renderer *renderer, int speed) {
     for (int i = 0 ; i < NUM_BARS - 1; i++) {
         int minIndex = i;
         for (int j = i + 1; j < NUM_BARS; j++) {
@@ -22,6 +22,6 @@ void selectionSort(int arr[], SDL_Renderer *renderer) {
         arr[minIndex] = temp;
 
         drawBars(renderer, arr);
-        SDL_Delay(30);
+        SDL_Delay(speed);
     }
 }

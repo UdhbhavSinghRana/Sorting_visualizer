@@ -30,7 +30,6 @@ int showSortingOptions() {
     printf("3. Selection Sort\n");
     printf("4. Merge Sort \n");
     printf("5. Quick Sort \n");
-    // Add more options for other sorting algorithms here
 
     printf("Enter the number of your choice: ");
     scanf("%d", &choice);
@@ -38,22 +37,51 @@ int showSortingOptions() {
     return choice;
 }
 
-void chooseSortingAlgorithm(int arr[], SDL_Renderer *renderer, int algorithm) {
-    switch (algorithm) {
+int chooseSpeed() {
+    int speed;
+    printf("Select speed of algo: \n");
+    printf("1. Slow\n");
+    printf("2. Medium\n");
+    printf("3. Fast\n");
+    printf("4. Very Fast\n");
+    
+    printf("Enter the number of your choice: ");
+    scanf("%d", &speed);
+
+    switch (speed) {
         case 1:
-            insertionSort(arr, renderer);
+            speed = 50;
             break;
         case 2:
-            insertionSort(arr, renderer);
+            speed = 30;
             break;
         case 3:
-            selectionSort(arr, renderer);
+            speed = 20;
             break;
         case 4:
-            mergeSort(arr, 0, NUM_BARS - 1, renderer);
+            speed = 10;
+            break;
+    } 
+
+    return speed;
+}
+
+void chooseSortingAlgorithm(int arr[], SDL_Renderer *renderer, int algorithm, int speed) {
+    switch (algorithm) {
+        case 1:
+            insertionSort(arr, renderer, speed);
+            break;
+        case 2:
+            insertionSort(arr, renderer, speed);
+            break;
+        case 3:
+            selectionSort(arr, renderer, speed);
+            break;
+        case 4:
+            mergeSort(arr, 0, NUM_BARS - 1, renderer, speed);
             break;
         case 5:
-            quickSort(arr, 0, NUM_BARS - 1, renderer);
+            quickSort(arr, 0, NUM_BARS - 1, renderer, speed);
         default:
             printf("Invalid algorithm choice.\n");
     }
@@ -79,7 +107,8 @@ int main() {
         arr[i] = rand() % (SCREEN_HEIGHT - 50) + 50;
     }
     int choice = showSortingOptions();
-    chooseSortingAlgorithm(arr, renderer, choice); 
+    int speed = chooseSpeed();
+    chooseSortingAlgorithm(arr, renderer, choice, speed); 
 
     SDL_Event e;
     int quit = 0;

@@ -3,20 +3,18 @@
 #include <SDL2/SDL.h>
 
 // Bubble Sort
-void bubbleSort(int arr[], SDL_Renderer *renderer);
+void bubbleSort(int arr[], SDL_Renderer *renderer, int speed);
 
 // Insertion Sort
-void insertionSort(int arr[], SDL_Renderer *renderer);
+void insertionSort(int arr[], SDL_Renderer *renderer, int speed);
 
 //Selection Sort
-void selectionSort(int arr[], SDL_Renderer *renderer);
+void selectionSort(int arr[], SDL_Renderer *renderer, int speed);
 // Quick Sort
-void quickSort(int arr[], int low, int high, SDL_Renderer *renderer);
+void quickSort(int arr[], int low, int high, SDL_Renderer *renderer, int speed);
 
 // Merge Sort
-void mergeSort(int arr[], int left, int right, SDL_Renderer *renderer);
+void mergeSort(int arr[], int left, int right, SDL_Renderer *renderer, int speed);
 
-// Draw bars
-void drawBars(SDL_Renderer *renderer, int arr[]);
 
 #endif

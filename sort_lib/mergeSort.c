@@ -9,7 +9,7 @@
 #define NUM_BARS 50
 #define BAR_WIDTH (SCREEN_WIDTH / NUM_BARS)
 
-void merge(int arr[], int left, int mid, int right, SDL_Renderer *renderer) {
+void merge(int arr[], int left, int mid, int right, SDL_Renderer *renderer, int speed) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
@@ -34,7 +34,7 @@ void merge(int arr[], int left, int mid, int right, SDL_Renderer *renderer) {
         k++;
 
         drawBars(renderer, arr);
-        SDL_Delay(30);
+        SDL_Delay(speed);
     }
 
     while (i < n1) {
@@ -43,7 +43,7 @@ void merge(int arr[], int left, int mid, int right, SDL_Renderer *renderer) {
         k++;
 
         drawBars(renderer, arr);
-        SDL_Delay(30);
+        SDL_Delay(speed);
     }
 
     while (j < n2) {
@@ -52,17 +52,17 @@ void merge(int arr[], int left, int mid, int right, SDL_Renderer *renderer) {
         k++;
 
         drawBars(renderer, arr);
-        SDL_Delay(30);
+        SDL_Delay(speed);
     }
 }
 
-void mergeSort(int arr[], int left, int right, SDL_Renderer *renderer) {
+void mergeSort(int arr[], int left, int right, SDL_Renderer *renderer, int speed) {
     if (left < right) {
         int mid = left + (right - left) / 2;
 
-        mergeSort(arr, left, mid, renderer);
-        mergeSort(arr, mid + 1, right, renderer);
+        mergeSort(arr, left, mid, renderer, speed);
+        mergeSort(arr, mid + 1, right, renderer, speed);
 
-        merge(arr, left, mid, right, renderer);
+        merge(arr, left, mid, right, renderer, speed);
     }
 }

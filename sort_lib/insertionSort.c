@@ -11,7 +11,7 @@
 
 
 
-void insertionSort(int arr[], SDL_Renderer *renderer) {
+void insertionSort(int arr[], SDL_Renderer *renderer, int speed) {
     for (int i = 1; i < NUM_BARS; i++) {
         int j = i;
         while (j > 0 && arr[j] < arr[j - 1]) {
@@ -20,7 +20,7 @@ void insertionSort(int arr[], SDL_Renderer *renderer) {
             arr[j - 1] = temp;
 
             drawBars(renderer, arr);
-            SDL_Delay(30);
+            SDL_Delay(speed);
             j--;
         }
     }

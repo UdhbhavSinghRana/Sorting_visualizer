@@ -12,7 +12,6 @@ Sorting Visualizer Demo
         Insertion Sort
         Merge Sort
         Quick Sort
-        Heap Sort
     Adjustable array size for testing different input data sizes.
     Speed control to slow down or speed up the visualization.
     Real-time visualization of the sorting process.
