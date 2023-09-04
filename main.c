@@ -58,13 +58,13 @@ int chooseSpeed() {
             speed = 50;
             break;
         case 2:
-            speed = 30;
-            break;
-        case 3:
             speed = 20;
             break;
-        case 4:
+        case 3:
             speed = 10;
+            break;
+        case 4:
+            speed = 2;
             break;
     } 
 
