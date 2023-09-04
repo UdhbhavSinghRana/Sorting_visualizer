@@ -14,7 +14,6 @@ The Sorting Visualizer is a web-based application that allows users to visualize
     Adjustable array size for testing different input data sizes.
     Speed control to slow down or speed up the visualization.
     Real-time visualization of the sorting process.
-    Detailed algorithm descriptions and complexity analysis.
 
 ## Usage
 
