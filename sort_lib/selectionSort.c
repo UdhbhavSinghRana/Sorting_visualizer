@@ -6,13 +6,11 @@
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
-#define NUM_BARS 50
-#define BAR_WIDTH (SCREEN_WIDTH / NUM_BARS)
 
-void selectionSort(int arr[], SDL_Renderer *renderer, int speed) {
-    for (int i = 0 ; i < NUM_BARS - 1; i++) {
+void selectionSort(int arr[], SDL_Renderer *renderer, int speed, int size) {
+    for (int i = 0 ; i < size - 1; i++) {
         int minIndex = i;
-        for (int j = i + 1; j < NUM_BARS; j++) {
+        for (int j = i + 1; j < size; j++) {
             if (arr[j] < arr[minIndex]) {
                 minIndex = i;
             } 
@@ -21,7 +19,7 @@ void selectionSort(int arr[], SDL_Renderer *renderer, int speed) {
         arr[i] = arr[minIndex];
         arr[minIndex] = temp;
 
-        drawBars(renderer, arr);
+        drawBars(renderer, arr, size);
         SDL_Delay(speed);
     }
 }

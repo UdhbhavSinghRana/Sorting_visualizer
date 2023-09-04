@@ -6,11 +6,8 @@
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
-#define NUM_BARS 50
-#define BAR_WIDTH (SCREEN_WIDTH / NUM_BARS)
 
-
-int partition(int arr[], int low, int high, SDL_Renderer *renderer, int speed) {
+int partition(int arr[], int low, int high, SDL_Renderer *renderer, int speed, int size) {
     int pivot = arr[high];
     int i = (low - 1);
 
@@ -28,16 +25,16 @@ int partition(int arr[], int low, int high, SDL_Renderer *renderer, int speed) {
     int temp = arr[i + 1];
     arr[i + 1] = arr[high];
     arr[high] = temp;
-    drawBars(renderer, arr);
+    drawBars(renderer, arr, size);
     SDL_Delay(speed);
 
     return (i + 1);
 }
 
-void quickSort(int arr[], int low, int high, SDL_Renderer *renderer, int speed) {
+void quickSort(int arr[], int low, int high, SDL_Renderer *renderer, int speed, int size) {
     if (low < high) {
-        int pi = partition(arr, low, high, renderer, speed);
-        quickSort(arr, low, pi - 1, renderer, speed);
-        quickSort(arr, pi + 1, high, renderer, speed);
+        int pi = partition(arr, low, high, renderer, speed, size);
+        quickSort(arr, low, pi - 1, renderer, speed, size);
+        quickSort(arr, pi + 1, high, renderer, speed, size);
     }
 }

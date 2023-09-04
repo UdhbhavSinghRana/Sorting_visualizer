@@ -6,10 +6,8 @@
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
-#define NUM_BARS 50
-#define BAR_WIDTH (SCREEN_WIDTH / NUM_BARS)
 
-void merge(int arr[], int left, int mid, int right, SDL_Renderer *renderer, int speed) {
+void merge(int arr[], int left, int mid, int right, SDL_Renderer *renderer, int speed, int size) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
@@ -33,7 +31,7 @@ void merge(int arr[], int left, int mid, int right, SDL_Renderer *renderer, int 
         }
         k++;
 
-        drawBars(renderer, arr);
+        drawBars(renderer, arr, size);
         SDL_Delay(speed);
     }
 
@@ -42,7 +40,7 @@ void merge(int arr[], int left, int mid, int right, SDL_Renderer *renderer, int 
         i++;
         k++;
 
-        drawBars(renderer, arr);
+        drawBars(renderer, arr, size);
         SDL_Delay(speed);
     }
 
@@ -51,18 +49,18 @@ void merge(int arr[], int left, int mid, int right, SDL_Renderer *renderer, int 
         j++;
         k++;
 
-        drawBars(renderer, arr);
+        drawBars(renderer, arr, size);
         SDL_Delay(speed);
     }
 }
 
-void mergeSort(int arr[], int left, int right, SDL_Renderer *renderer, int speed) {
+void mergeSort(int arr[], int left, int right, SDL_Renderer *renderer, int speed, int size) {
     if (left < right) {
         int mid = left + (right - left) / 2;
 
-        mergeSort(arr, left, mid, renderer, speed);
-        mergeSort(arr, mid + 1, right, renderer, speed);
+        mergeSort(arr, left, mid, renderer, speed, size);
+        mergeSort(arr, mid + 1, right, renderer, speed, size);
 
-        merge(arr, left, mid, right, renderer, speed);
+        merge(arr, left, mid, right, renderer, speed, size);
     }
 }

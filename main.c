@@ -6,14 +6,13 @@
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
-#define NUM_BARS 50
-#define BAR_WIDTH (SCREEN_WIDTH / NUM_BARS)
 
-void drawBars(SDL_Renderer *renderer, int arr[]) {
+void drawBars(SDL_Renderer *renderer, int arr[], int size) {
+    int BAR_WIDTH = SCREEN_WIDTH / size;
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 
-    for (int i = 0; i < NUM_BARS; i++) {
+    for (int i = 0; i < size; i++) {
         SDL_Rect bar = {i * BAR_WIDTH, SCREEN_HEIGHT - arr[i], BAR_WIDTH, arr[i]};
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderFillRect(renderer, &bar);
@@ -31,12 +30,18 @@ int showSortingOptions() {
     printf("4. Merge Sort \n");
     printf("5. Quick Sort \n");
 
-    printf("Enter the number of your choice: ");
+    printf("Enter the ber of your choice: ");
     scanf("%d", &choice);
 
     return choice;
 }
-
+int chooseSize() {
+    int size;
+    printf("Choose size of array: ");
+    scanf("%d", &size);
+    
+    return size;
+}
 int chooseSpeed() {
     int speed;
     printf("Select speed of algo: \n");
@@ -45,7 +50,7 @@ int chooseSpeed() {
     printf("3. Fast\n");
     printf("4. Very Fast\n");
     
-    printf("Enter the number of your choice: ");
+    printf("Enter the ber of your choice: ");
     scanf("%d", &speed);
 
     switch (speed) {
@@ -66,22 +71,23 @@ int chooseSpeed() {
     return speed;
 }
 
-void chooseSortingAlgorithm(int arr[], SDL_Renderer *renderer, int algorithm, int speed) {
+void chooseSortingAlgorithm(int arr[], SDL_Renderer *renderer, int algorithm, int speed, int size) {
     switch (algorithm) {
         case 1:
-            insertionSort(arr, renderer, speed);
+            insertionSort(arr, renderer, speed, size);
             break;
         case 2:
-            insertionSort(arr, renderer, speed);
+            insertionSort(arr, renderer, speed, size);
             break;
         case 3:
-            selectionSort(arr, renderer, speed);
+            selectionSort(arr, renderer, speed, size);
             break;
         case 4:
-            mergeSort(arr, 0, NUM_BARS - 1, renderer, speed);
+            mergeSort(arr, 0, size - 1, renderer, speed, size);
             break;
         case 5:
-            quickSort(arr, 0, NUM_BARS - 1, renderer, speed);
+            quickSort(arr, 0, size - 1, renderer, speed, size);
+            break;
         default:
             printf("Invalid algorithm choice.\n");
     }
@@ -101,14 +107,16 @@ int main() {
 
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    int arr[NUM_BARS];
+    
+    int size = chooseSize();
+    int arr[size];
     srand(time(NULL));
-    for (int i = 0; i < NUM_BARS; i++) {
+    for (int i = 0; i < size; i++) {
         arr[i] = rand() % (SCREEN_HEIGHT - 50) + 50;
     }
     int choice = showSortingOptions();
     int speed = chooseSpeed();
-    chooseSortingAlgorithm(arr, renderer, choice, speed); 
+    chooseSortingAlgorithm(arr, renderer, choice, speed, size); 
 
     SDL_Event e;
     int quit = 0;
